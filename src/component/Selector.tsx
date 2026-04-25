@@ -3,7 +3,7 @@ import "./Selector.css";
 
 interface SelectorProps {
   label: string;
-  checked: boolean;
+  checked: boolean | undefined;
   onChange: (next: boolean) => void;
 }
 

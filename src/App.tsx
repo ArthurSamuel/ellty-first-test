@@ -4,12 +4,14 @@ import Selector from "./component/Selector";
 import Button from "./component/button";
 
 function App() {
-  const [allChecked, setAllChecked] = useState(undefined);
-  const [checked, setChecked] = useState(Array(6).fill(undefined));
+  const [allChecked, setAllChecked] = useState<undefined | boolean>(undefined);
+  const [checked, setChecked] = useState<undefined | boolean[]>(
+    Array(6).fill(undefined)
+  );
 
   const handleOnChange = (index: number) => {
     setChecked((prev) =>
-      prev.map((item, indexItem) => {
+      prev?.map((item, indexItem) => {
         if (index === indexItem) {
           item = !item;
         }
@@ -20,7 +22,7 @@ function App() {
 
   const handleOnChangeAll = () => {
     setChecked((prev) =>
-      prev.map((item) => {
+      prev?.map((item) => {
         item = !allChecked;
         return item;
       })
@@ -39,7 +41,7 @@ function App() {
         <div className="line"></div>
       </div>
       <div className="wrapper">
-        {checked.map((item, index) => (
+        {checked?.map((item, index) => (
           <Selector
             key={index}
             checked={item}
