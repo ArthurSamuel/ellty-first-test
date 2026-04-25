@@ -4,20 +4,26 @@ import Selector from "./component/Selector";
 import Button from "./component/button";
 
 function App() {
-  const [allChecked, setAllChecked] = useState<undefined | boolean>(undefined);
-  const [checked, setChecked] = useState<undefined | boolean[]>(
-    Array(6).fill(undefined)
+  const numberOfPage = 6;
+  const [allChecked, setAllChecked] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean[]>(
+    Array(numberOfPage).fill(false)
   );
 
   const handleOnChange = (index: number) => {
+    let checked = 1;
     setChecked((prev) =>
       prev?.map((item, indexItem) => {
+        if (item === true) {
+          checked++;
+        }
         if (index === indexItem) {
           item = !item;
         }
         return item;
       })
     );
+    setAllChecked(checked === numberOfPage);
   };
 
   const handleOnChangeAll = () => {

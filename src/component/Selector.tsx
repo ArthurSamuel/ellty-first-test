@@ -1,20 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Selector.css";
 
 interface SelectorProps {
   label: string;
-  checked: boolean | undefined;
+  checked: boolean;
   onChange: (next: boolean) => void;
 }
 
 export default function Selector({ label, checked, onChange }: SelectorProps) {
+  const isFirstRender = useRef(true);
+  const isReady = useRef(false);
   const [state, setState] = useState("inactive");
   const [arm, setArmed] = useState(false);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     if (checked) {
       setState("active");
-    } else if (checked === false) {
+      isReady.current = true;
+    } else if (!checked && isReady.current) {
       setState("exit");
       setArmed(false);
       const t = setTimeout(() => {
