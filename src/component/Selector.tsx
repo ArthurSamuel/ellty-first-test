@@ -14,7 +14,7 @@ export default function Selector({ label, checked, onChange }: SelectorProps) {
   useEffect(() => {
     if (checked) {
       setState("active");
-    } else {
+    } else if (checked === false) {
       setState("exit");
       setArmed(false);
       const t = setTimeout(() => {

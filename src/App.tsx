@@ -4,7 +4,7 @@ import Selector from "./component/Selector";
 import Button from "./component/button";
 
 function App() {
-  const [allChecked, setAllChecked] = useState(false);
+  const [allChecked, setAllChecked] = useState(undefined);
   const [checked, setChecked] = useState(Array(6).fill(undefined));
 
   const handleOnChange = (index: number) => {

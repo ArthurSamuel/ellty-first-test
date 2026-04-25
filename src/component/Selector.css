@@ -22,7 +22,7 @@
 
 .checkbox {
   background-color: white;
-  transition: background-color 0.25s ease, box-shadow 0.3s ease;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
   width: 23px;
   height: 23px;
   border-radius: 6px;
